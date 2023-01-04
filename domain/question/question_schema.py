@@ -1,16 +1,17 @@
 import datetime
 
 from pydantic import BaseModel
+from typing import List
+
+from domain.answer.answer_schema import Answer
 
 
-# Question 스키마
 class Question(BaseModel):
     id: int
     subject: str
     content: str
     create_date: datetime.datetime
-    
-    # Question 모델의 항목일드 자동을 Question 스키마로 매핑
+    answers: List[Answer] = []
+
     class Config:
         orm_mode = True
-
